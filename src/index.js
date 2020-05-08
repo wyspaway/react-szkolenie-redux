@@ -8,25 +8,38 @@ import { Provider } from "react-redux";
 
 import Home from "./pages/Home/Home.component";
 import About from "./pages/About/About.component";
+import Todo from "./pages/Todo/Todo.component";
+
+// import App from "./App";
 
 import Menu from "./components/Menu/Menu.component.js";
 
-const reducer = (state = { count: 0 }, action) => {
+const INITIAL_STATE = {
+  count: 0,
+  todo: ["Example 1", "Example todo 2"],
+};
+
+const reducer = (state = { INITIAL_STATE }, action) => {
   switch (action.type) {
     case "INCREMENT":
-      return (state = { count: state.count + 1 });
+      return (state = { ...state, count: state.count + 1 });
     case "DISCREMENT":
-      return (state = { count: state.count - 1 });
+      return (state = { ...state, count: state.count - 1 });
     case "RESET":
-      return (state = { count: 0 });
+      return (state = { ...state, count: 0 });
     case "CHANGE":
-      return (state = { count: action.counterValue });
+      return (state = { ...state, count: action.counterValue });
+    case "ADD_TODO":
+      return (state = { ...state, todo: [...state.todo, action.todoValue] });
     default:
       return state;
   }
 };
 
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -35,6 +48,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
+        <Route path="/todo" component={Todo} />
       </Switch>
     </BrowserRouter>
   </Provider>,
