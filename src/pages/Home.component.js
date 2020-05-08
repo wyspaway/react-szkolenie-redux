@@ -28,7 +28,7 @@ function HomeComponent({
 
 const mapStateToProps = (state) => {
   return {
-    count: state.counter.counterValue,
+    count: state.counter.countValue,
   };
 };
 
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch) => {
     actionIncrement: () => dispatch({ type: "INCREMENT" }),
     actionDecrement: () => dispatch({ type: "DECREMENT" }),
     actionReset: () => dispatch({ type: "RESET" }),
-    actionChange: (value) => dispatch({ type: "CHANGE", counterValue: value }),
+    actionChange: (value) => dispatch({ type: "CHANGE", countValue: value }),
   };
 };
 
