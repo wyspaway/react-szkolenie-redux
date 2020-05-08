@@ -49,8 +49,16 @@ const reducer = (state = INITIAL_STATE, action) => {
         ],
       });
     case "MARK_TODO":
-      console.log(action.TodoId);
-      return state;
+      const newTodo = [...state.todo];
+      newTodo.map((element) =>
+        element.id === action.todoId
+          ? (element.completed = !element.completed)
+          : null
+      );
+      return (state = {
+        ...state,
+        todo: [...newTodo],
+      });
     default:
       return state;
   }
