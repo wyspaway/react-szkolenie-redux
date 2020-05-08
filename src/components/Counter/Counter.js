@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-function App({ count, actionIncrement, actionDiscrement, actionReset }) {
+function Counter({ count, actionIncrement, actionDiscrement, actionReset }) {
   return (
-    <div className="App">
+    <div className="Counter">
       Count: {count}
       <button onClick={actionIncrement}>+</button>
       <button onClick={actionDiscrement}>-</button>
@@ -26,4 +26,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);

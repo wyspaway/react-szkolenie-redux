@@ -1,15 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./index.css";
-import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+
+import Home from "./pages/Home/Home.component";
+import About from "./pages/About/About.component";
+
+import Menu from "./components/Menu/Menu.component.js";
 
 const reducer = (state = { count: 0 }, action) => {
   switch (action.type) {
     case "INCREMENT":
       return (state = { count: state.count + 1 });
+    case "DISCREMENT":
+      return (state = { count: state.count - 1 });
+    case "RESET":
+      return (state = { count: 0 });
     default:
       return state;
   }
@@ -19,7 +28,13 @@ const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <Menu />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+      </Switch>
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
