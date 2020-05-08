@@ -1,9 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 
-function TodoListComponent({ todoList }) {
+function TodoListComponent({ todoList, actionMarkTodo }) {
   const renderTodos = () =>
-    todoList.map((todoElement, index) => <div key={index}>{todoElement}</div>);
+    todoList.map((todoElement) => (
+      <div key={todoElement.id} onClick={() => actionMarkTodo(todoElement.id)}>
+        {todoElement.name}
+      </div>
+    ));
   return (
     <div className="App">
       <h2>Lista Todo:</h2>
@@ -18,4 +22,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(TodoListComponent);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actionMarkTodo: (value) => dispatch({ type: "MARK_TODO", todoId: value }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoListComponent);
