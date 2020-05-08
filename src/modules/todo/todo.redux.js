@@ -1,12 +1,12 @@
 const TODO_INITIAL_STATE = {
   todo: [
     {
-      name: "Example Todo 1",
+      title: "Example Todo 1",
       completed: false,
       id: 1,
     },
     {
-      name: "Example Todo 2",
+      title: "Example Todo 2",
       completed: false,
       id: 2,
     },
@@ -16,6 +16,8 @@ const TODO_INITIAL_STATE = {
 export const TODO_ACTION_TYPES = {
   ADD_TODO: "ADD_TODO",
   MARK_TODO: "MARK_TODO",
+  FETCH_TODOS: "FETCH_TODOS",
+  INSERT_TODOS: "INSERT_TODOS",
 };
 
 export const todoReducer = (state = TODO_INITIAL_STATE, action) => {
@@ -25,7 +27,7 @@ export const todoReducer = (state = TODO_INITIAL_STATE, action) => {
         todo: [
           ...state.todo,
           {
-            name: action.todoValue,
+            title: action.todoValue,
             completed: false,
             id: state.todo.length + 1,
           },
@@ -40,6 +42,10 @@ export const todoReducer = (state = TODO_INITIAL_STATE, action) => {
       );
       return (state = {
         todo: [...newTodo],
+      });
+    case TODO_ACTION_TYPES.INSERT_TODOS:
+      return (state = {
+        todo: action.value,
       });
     default:
       return state;

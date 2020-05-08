@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { ACTION_TODO_MARK } from "../modules/todo/todo.action";
+import {
+  ACTION_TODO_MARK,
+  ACTION_FETCH_TODOS,
+} from "../modules/todo/todo.action";
 import {
   selectTodosProgress,
   selectTodosCompleted,
 } from "../modules/todo/todo.selector";
 
-function TodoListComponent({ todoList, todoListCompleted, actionMarkTodo }) {
+function TodoListComponent({
+  todoList,
+  todoListCompleted,
+  actionMarkTodo,
+  actionFetchTodo,
+}) {
+  useEffect(() => {
+    actionFetchTodo();
+  }, [actionFetchTodo]);
   const renderTodos = (todoList) =>
     todoList.map((todoElement) => (
       <div key={todoElement.id} onClick={() => actionMarkTodo(todoElement.id)}>
-        {todoElement.name}
+        {todoElement.title}
       </div>
     ));
   return (
@@ -33,6 +44,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actionMarkTodo: (value) => dispatch(ACTION_TODO_MARK(value)),
+    actionFetchTodos: () => dispatch(ACTION_FETCH_TODOS()),
   };
 };
 
