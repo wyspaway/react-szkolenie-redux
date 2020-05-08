@@ -19,6 +19,8 @@ const reducer = (state = { count: 0 }, action) => {
       return (state = { count: state.count - 1 });
     case "RESET":
       return (state = { count: 0 });
+    case "CHANGE":
+      return (state = { count: action.counterValue });
     default:
       return state;
   }
