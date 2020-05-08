@@ -28,7 +28,7 @@ function HomeComponent({
 
 const mapStateToProps = (state) => {
   return {
-    count: state.count,
+    count: state.counter.counterValue,
   };
 };
 

@@ -20,8 +20,8 @@ function TodoListComponent({ todoList, todoListCompleted, actionMarkTodo }) {
 
 const mapStateToProps = (state) => {
   return {
-    todoList: state.todo.filter((element) => !element.completed),
-    todoListCompleted: state.todo.filter((element) => element.completed),
+    todoList: state.todo.todo.filter((element) => !element.completed),
+    todoListCompleted: state.todo.todo.filter((element) => element.completed),
   };
 };
 
