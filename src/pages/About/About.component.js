@@ -7,7 +7,7 @@ function About({ count }) {
 
 const mapStateToProps = (state) => {
   return {
-    count: state.counter.counterValue,
+    count: state.counter.countValue,
   };
 };
 
