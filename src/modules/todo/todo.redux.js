@@ -13,9 +13,14 @@ const TODO_INITIAL_STATE = {
   ],
 };
 
+export const TODO_ACTION_TYPES = {
+  ADD_TODO: "ADD_TODO",
+  MARK_TODO: "MARK_TODO",
+};
+
 export const todoReducer = (state = TODO_INITIAL_STATE, action) => {
   switch (action.type) {
-    case "ADD_TODO":
+    case TODO_ACTION_TYPES.ADD_TODO:
       return (state = {
         todo: [
           ...state.todo,
@@ -26,7 +31,7 @@ export const todoReducer = (state = TODO_INITIAL_STATE, action) => {
           },
         ],
       });
-    case "MARK_TODO":
+    case TODO_ACTION_TYPES.MARK_TODO:
       const newTodo = [...state.todo];
       newTodo.map((element) =>
         element.id === action.todoId

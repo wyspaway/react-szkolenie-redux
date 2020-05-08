@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { ACTION_TODO_MARK } from "../modules/todo/todo.action";
 
 function TodoListComponent({ todoList, todoListCompleted, actionMarkTodo }) {
   const renderTodos = (todoList) =>
@@ -27,7 +28,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actionMarkTodo: (value) => dispatch({ type: "MARK_TODO", todoId: value }),
+    actionMarkTodo: (value) => dispatch(ACTION_TODO_MARK(value)),
   };
 };
 
