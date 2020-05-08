@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { selectCounterValue } from "../../modules/counter/counter.selector";
 
 function Counter({
   count,
@@ -25,7 +26,7 @@ function Counter({
 
 const mapStateToProps = (state) => {
   return {
-    count: state.counter.counterValue,
+    count: selectCounterValue(state),
   };
 };
 

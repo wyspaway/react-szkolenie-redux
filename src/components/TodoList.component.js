@@ -1,6 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { ACTION_TODO_MARK } from "../modules/todo/todo.action";
+import {
+  selectTodosProgress,
+  selectTodosCompleted,
+} from "../modules/todo/todo.selector";
 
 function TodoListComponent({ todoList, todoListCompleted, actionMarkTodo }) {
   const renderTodos = (todoList) =>
@@ -21,8 +25,8 @@ function TodoListComponent({ todoList, todoListCompleted, actionMarkTodo }) {
 
 const mapStateToProps = (state) => {
   return {
-    todoList: state.todo.todo.filter((element) => !element.completed),
-    todoListCompleted: state.todo.todo.filter((element) => element.completed),
+    todoList: selectTodosProgress(state),
+    todoListCompleted: selectTodosCompleted(state),
   };
 };
 
